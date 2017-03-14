@@ -18,7 +18,8 @@
 <div id='map'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWxiZnRhIiwiYSI6ImNpZ2lldzFnYTAwMGJ0a200azc3cm5mNGwifQ.DMW757428sFI4hZLMZ1LUg';
-var places = './features.geojson'
+var placesPrcls = './prclsCAGasks.geojson'
+var placesPts = './ptsCAGasks.geojson'
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mlbfta/cj08jlctg001g2sn7fz6ow8dx',    
@@ -29,19 +30,34 @@ var map = new mapboxgl.Map({
 });
 
 map.on('load', function () {
-    // Add a GeoJSON source containing place coordinates and information.
-    map.addSource('prclGeojson', {
+    // Add a GeoJSON source containing point coordinates and information.
+    map.addSource('ptsGeojson', {
        'type': 'geojson',
-        'data': places
+       'data': placesPts
+    });
+    // Add a GeoJSON source containing parcel coordinates and information.
+    map.addSource('prclsGeojson', {
+       'type': 'geojson',
+       'data': placesPrcls
     });   
-    // Add the source as a Layer and apply color and opacity.    
+    // Add the parcel source as a Layer and apply color and opacity.    
     map.addLayer({
-        'id': 'prclGeojson',
+        'id': 'prclsGeojson',
         'type': 'fill',
-        'source': 'prclGeojson',
+        'source': 'prclsGeojson',
         'paint': {
             'fill-color': '#fc8d62',
             'fill-opacity': 0.6
+        }
+    });   
+    // Add the point source as a Layer and apply style.    
+    map.addLayer({
+        'id': 'ptsGeojson',
+        'source': 'ptsGeojson',
+        'type': 'circle',
+        'paint': {
+            'circle-color': '#fc8d62',
+            'circle-opacity': 0.6
         }
     })
 });
