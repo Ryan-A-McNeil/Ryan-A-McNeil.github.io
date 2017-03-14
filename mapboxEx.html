@@ -16,6 +16,7 @@
 <div id='map'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWxiZnRhIiwiYSI6ImNpZ2lldzFnYTAwMGJ0a200azc3cm5mNGwifQ.DMW757428sFI4hZLMZ1LUg';
+var places = './features.geojson'
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mlbfta/cj08jlctg001g2sn7fz6ow8dx',    
@@ -26,16 +27,18 @@ var map = new mapboxgl.Map({
 });
 
 map.on('load', function () {
+    // Add a GeoJSON source containing place coordinates and information.
+    map.addSource('prclGeojson', {
+       'type': 'geojson',
+        'data': places
+    });   
+    // Add the source as a Layer    
     map.addLayer({
-        'id': 'prclsGeojsonLayer',
+        'id': 'prclsGeojson',
+        'type': 'Polygon'
         'source': 'prclGeojson',
-        'type': 'fill',
+        'type': 'Polygon',
     })
-});
-    
-var prclPoly = map.addSource('prclGeojson', {
-    type: 'geojson',
-    data: './features.geojson'
 });
 </script>
 
