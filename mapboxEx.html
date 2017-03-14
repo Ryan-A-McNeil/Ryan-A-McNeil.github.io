@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<!--    This document is adapted from examples provided by Mapbox
+        located at https://www.mapbox.com/mapbox-gl-js/examples  -->
 <head>
     <meta charset='utf-8' />
     <title></title>
@@ -15,35 +17,33 @@
 
 <div id='map'></div>
 <script>
-mapboxgl.accessToken = '<your access token here>';
+mapboxgl.accessToken = 'pk.eyJ1IjoibWxiZnRhIiwiYSI6ImNpZ2lldzFnYTAwMGJ0a200azc3cm5mNGwifQ.DMW757428sFI4hZLMZ1LUg';
+var places = './features.geojson'
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
-    center: [-88.13734351262877, 35.137451890638886],
-    zoom: 4
+    style: 'mapbox://styles/mlbfta/cj08jlctg001g2sn7fz6ow8dx',    
+    maxBounds: [[-83.142,42.259],[-83.082,42.337]],
+    center: [-83.101,42.299],
+    zoom: 12,
+    bearing: -29
 });
 
 map.on('load', function () {
-
+    // Add a GeoJSON source containing place coordinates and information.
+    map.addSource('prclGeojson', {
+       'type': 'geojson',
+        'data': places
+    });   
+    // Add the source as a Layer and apply color and opacity.    
     map.addLayer({
-        'id': 'urban-areas-fill',
+        'id': 'prclGeojson',
         'type': 'fill',
-        'source': {
-            'type': 'geojson',
-            'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'
-        },
-        'layout': {},
+        'source': 'prclGeojson',
         'paint': {
-            'fill-color': '#f08',
-            'fill-opacity': 0.4
+            'fill-color': '#fc8d62',
+            'fill-opacity': 0.6
         }
-    // This is the important part of this example: the addLayer
-    // method takes 2 arguments: the layer as an object, and a string
-    // representing another layer's name. if the other layer
-    // exists in the stylesheet already, the new layer will be positioned
-    // right before that layer in the stack, making it possible to put
-    // 'overlays' anywhere in the layer stack.
-    }, 'water');
+    })
 });
 </script>
 
