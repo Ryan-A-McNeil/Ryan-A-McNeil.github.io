@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<!--    This document is adapted from examples provided by Mapbox
+        located at https://www.mapbox.com/mapbox-gl-js/examples  -->
 <head>
     <meta charset='utf-8' />
     <title></title>
@@ -32,13 +34,15 @@ map.on('load', function () {
        'type': 'geojson',
         'data': places
     });   
-    // Add the source as a Layer    
+    // Add the source as a Layer and apply color and opacity.    
     map.addLayer({
         'id': 'prclGeojson',
         'type': 'fill',
         'source': 'prclGeojson',
-        'fill-color': '#fc8d62',
-        'fill-opacity': 0.6
+        'paint': {
+            'fill-color': '#fc8d62',
+            'fill-opacity': 0.6
+        }
     })
 });
 </script>
