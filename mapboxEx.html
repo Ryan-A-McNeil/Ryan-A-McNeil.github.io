@@ -56,7 +56,24 @@ map.on('load', function () {
         'source': 'ptsGeojson',
         'type': 'circle',
         'paint': {
-            'circle-color': '#fc8d62',
+         // Replace the single specified 'circle-color' with a bracketed sublist
+         // based on property functions; values in the data fields (e.g., 'propType')
+         // define the color by which the points are symbolized.
+         // Example: 
+         // "circle-color": {
+         // "property": "temperature",
+         // "stops": [
+
+              // "temperature" is 0   -> circle color will be blue
+              // [0, 'blue'],
+
+              // "temperature" is 100 -> circle color will be red
+              //  [100, 'red']
+
+              //  ]
+              // }
+         // End Example
+            'circle-color': '#fc8d62',  
             'circle-opacity': 0.6
         }
     })
