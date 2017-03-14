@@ -24,11 +24,6 @@ var map = new mapboxgl.Map({
     zoom: 12,
     bearing: -29
 });
-    
-var prclPoly = map.addSource('prclGeojson', {
-    type: 'geojson',
-    data: './features.geojson'
-});
 
 map.on('load', function () {
     map.addLayer({
@@ -36,6 +31,11 @@ map.on('load', function () {
         'source': 'prclGeojson',
         'type': 'fill',
     })
+});
+    
+var prclPoly = map.addSource('prclGeojson', {
+    type: 'geojson',
+    data: './features.geojson'
 });
 </script>
 
