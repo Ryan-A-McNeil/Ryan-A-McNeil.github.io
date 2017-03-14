@@ -26,13 +26,27 @@ var map = new mapboxgl.Map({
 });
 
 map.on('load', function () {
-
+    map.addSource('parcels', {
+        'type': 'geojson',
+        'data': {
+            'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
+                        ##need to figure out how to pry coordinates out of 'features.geojson', otherwise, enter them all inline
+                    ]
+                }
+            }
+    });           
+    
     map.addLayer({
-        'id': 'prclFeatures',
+        'id': 'parcels',
         'type': 'fill',
         'source': {
             'type': 'geojson',
-            'data': './features.geojson'
+            'data': {
+                
         },
         'layout': {},
         'paint': {
