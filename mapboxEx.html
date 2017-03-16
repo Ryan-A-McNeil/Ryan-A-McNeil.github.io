@@ -23,10 +23,10 @@ var placesPts = './ptsCAGasks.geojson'
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mlbfta/cj08jlctg001g2sn7fz6ow8dx',    
-    maxBounds: [[-83.142,42.259],[-83.082,42.337]],
+    maxBounds: [[-83.2879,42.255],[-82.9105,42.4504]], // Restricts panning to the SW and NE bounds of the City of Detroit.
     center: [-83.101,42.299],
     zoom: 12,
-    bearing: -29
+    bearing: -29 // Rotates map to orient streets to approximate NSEW.
 });
 
 map.on('load', function () {
