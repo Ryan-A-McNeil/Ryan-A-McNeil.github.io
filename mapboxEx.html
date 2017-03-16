@@ -115,7 +115,7 @@ map.on('mousemove', function (e) {
 });
 
 // For Hover: Create a popup, but don't add it to the map yet.
-var popup = new mapboxgl.Popup({
+var popup2 = new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false
 });
@@ -126,7 +126,7 @@ map.on('mousemove', function(e) {
     map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
 
     if (!features.length) {
-        popup.remove();
+        popup2.remove();
         return;
     }
 
@@ -134,7 +134,7 @@ map.on('mousemove', function(e) {
 
     // Populate the popup and set its coordinates
     // based on the feature found (e.g. a block of HTML with outlinks).
-    popup.setLngLat(feature.geometry.coordinates)
+    popup2.setLngLat(feature.geometry.coordinates)
         .setHTML(feature.properties.prclNum)
         .addTo(map);
 });        
