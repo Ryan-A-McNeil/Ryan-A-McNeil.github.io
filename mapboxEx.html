@@ -95,7 +95,7 @@ map.on('click', function (e) {
 
     var popup = new mapboxgl.Popup()
         .setLngLat(map.unproject(e.point))
-        .setHTML(feature.properties.name)
+        .setHTML(feature.properties.prclNum) // Set the field name(s) to include from source.
         .addTo(map);
 });
 
